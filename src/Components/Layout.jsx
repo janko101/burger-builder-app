@@ -3,7 +3,7 @@ import React from "react";
 const Layout = (props) => {
   return (
     <>
-      <div>Toolbar, Sidedrawe, Backdrop</div>
+      <div>Toolbar, Sidedrawer, Backdrop</div>
       <main>{props.children}</main>
     </>
   );

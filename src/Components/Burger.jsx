@@ -20,7 +20,7 @@ const Burger = (props) => {
       <Ingredient type="bread-top" />
       {transformedIngredients}
       <Ingredient type="bread-bottom" />
-      <p>Total price: {props.totalPrice} SEK</p>
+      <p id="price">Total price: {props.totalPrice} SEK</p>
     </div>
   );
 };

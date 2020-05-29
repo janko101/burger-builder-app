@@ -3,7 +3,7 @@ describe("User can add and remove ingredients", () => {
     cy.visit("/");
   });
 
-  describe("Adding ingredients", () => {
+  describe("Initial state", () => {
     it("cheks for bread-top ingredient", () => {
       cy.get("#bread-top").should("exist");
       cy.get("#bread-top").within(() => {
@@ -12,10 +12,23 @@ describe("User can add and remove ingredients", () => {
       });
     });
 
+    it("checks for bread-bottom ingredient", () => {
+      cy.get("#bread-bottom").should("exist");
+    });
+
     it("checks initial total price", () => {
       cy.get("#price").should("contain", "Total price: 40 SEK");
     });
 
+    it('checks if Less button is disabled', () => {
+      cy.get('#less-Meat').should('be.disabled')
+      cy.get('#less-Cheese').should('be.disabled')
+      cy.get('#less-Bacon').should('be.disabled')
+      cy.get('#less-Salad').should('be.disabled')
+    });
+  });
+
+  describe("Adding ingredients", () => {
     it("checks if user can add meat", () => {
       cy.get("#more-Meat").click();
       cy.get("#meat").should("exist");
@@ -39,23 +52,18 @@ describe("User can add and remove ingredients", () => {
       cy.get("#bacon").should("exist");
       cy.get("#price").should("contain", "Total price: 68 SEK");
     });
-
-    it("checks for bread-bottom ingredient", () => {
-      cy.get("#bread-bottom").should("exist");
-    });
   });
 
   describe("Removing ingredients", () => {
-
     it("checks if user can remove ingredients", () => {
       cy.get("#less-Meat").click();
-      cy.get("#meat").should('not.exist')
+      cy.get("#meat").should("not.exist");
       cy.get("#less-Cheese").click();
-      cy.get("#cheese").should('not.exist')
+      cy.get("#cheese").should("not.exist");
       cy.get("#less-Salad").click();
-      cy.get("#salad").should('not.exist')
+      cy.get("#salad").should("not.exist");
       cy.get("#less-Bacon").click();
-      cy.get("#bacon").should('not.exist')
+      cy.get("#bacon").should("not.exist");
       cy.get("#price").should("contain", "Total price: 40 SEK");
     });
   });

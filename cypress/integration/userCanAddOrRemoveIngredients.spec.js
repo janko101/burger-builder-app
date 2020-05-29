@@ -1,4 +1,4 @@
-describe("Burger ingredients are visable on the page", () => {
+describe("User can add and remove ingredients", () => {
   before(() => {
     cy.visit("/");
   });
@@ -11,19 +11,23 @@ describe("Burger ingredients are visable on the page", () => {
     });
   });
 
-  it("checks for meat ingredient", () => {
+  it("checks if user can add meat", () => {
+    cy.get('#Meat').click()
     cy.get("#meat").should("exist");
   });
 
-  it("checks for cheese ingredient", () => {
+  it("checks if user can add cheese ingredient", () => {
+    cy.get('#Cheese').click()
     cy.get("#cheese").should("exist");
   });
 
-  it("checks for salad ingredient", () => {
+  it("checks if user can add salad ingredient", () => {
+    cy.get('#Salad').click()
     cy.get("#salad").should("exist");
   });
 
-  it("checks for bacon ingredient", () => {
+  it("checks if user can add bacon ingredient", () => {
+    cy.get('#Bacon').click()
     cy.get("#bacon").should("exist");
   });
 

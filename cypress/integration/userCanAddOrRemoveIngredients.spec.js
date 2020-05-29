@@ -17,7 +17,7 @@ describe("User can add and remove ingredients", () => {
     });
 
     it("checks initial total price", () => {
-      cy.get("#price").should("contain", "Total price: 40 SEK");
+      cy.get("#price").should("contain", "Total price: 40.00 SEK");
     });
 
     it('checks if Less button is disabled', () => {
@@ -32,25 +32,25 @@ describe("User can add and remove ingredients", () => {
     it("checks if user can add meat", () => {
       cy.get("#more-Meat").click();
       cy.get("#meat").should("exist");
-      cy.get("#price").should("contain", "Total price: 50 SEK");
+      cy.get("#price").should("contain", "Total price: 50.00 SEK");
     });
 
     it("checks if user can add cheese ingredient", () => {
       cy.get("#more-Cheese").click();
       cy.get("#cheese").should("exist");
-      cy.get("#price").should("contain", "Total price: 57 SEK");
+      cy.get("#price").should("contain", "Total price: 57.00 SEK");
     });
 
     it("checks if user can add salad ingredient", () => {
       cy.get("#more-Salad").click();
       cy.get("#salad").should("exist");
-      cy.get("#price").should("contain", "Total price: 60 SEK");
+      cy.get("#price").should("contain", "Total price: 60.00 SEK");
     });
 
     it("checks if user can add bacon ingredient", () => {
       cy.get("#more-Bacon").click();
       cy.get("#bacon").should("exist");
-      cy.get("#price").should("contain", "Total price: 68 SEK");
+      cy.get("#price").should("contain", "Total price: 68.00 SEK");
     });
   });
 
@@ -64,7 +64,7 @@ describe("User can add and remove ingredients", () => {
       cy.get("#salad").should("not.exist");
       cy.get("#less-Bacon").click();
       cy.get("#bacon").should("not.exist");
-      cy.get("#price").should("contain", "Total price: 40 SEK");
+      cy.get("#price").should("contain", "Total price: 40.00 SEK");
     });
   });
 });

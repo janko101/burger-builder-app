@@ -20,11 +20,11 @@ describe("User can add and remove ingredients", () => {
       cy.get("#price").should("contain", "Total price: 40.00 SEK");
     });
 
-    it('checks if Less button is disabled', () => {
-      cy.get('#less-Meat').should('be.disabled')
-      cy.get('#less-Cheese').should('be.disabled')
-      cy.get('#less-Bacon').should('be.disabled')
-      cy.get('#less-Salad').should('be.disabled')
+    it("checks if Less button is disabled", () => {
+      cy.get("#less-Meat").should("be.disabled");
+      cy.get("#less-Cheese").should("be.disabled");
+      cy.get("#less-Bacon").should("be.disabled");
+      cy.get("#less-Salad").should("be.disabled");
     });
   });
 

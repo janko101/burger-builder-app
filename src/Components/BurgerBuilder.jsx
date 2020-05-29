@@ -40,7 +40,12 @@ class BurgerBuilder extends Component {
       ...this.state.ingredients
     }
     removedIngredient[type] = deductingIngredient
-    this.setState({ingredients: removedIngredient})
+
+    const oldPrice = this.state.totalPrice
+    const deductedPrice = oldPrice - INGREDIENT_PRICES[type]
+
+    this.setState({ingredients: removedIngredient, totalPrice: deductedPrice})
+    debugger
   };
 
   render() {

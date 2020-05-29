@@ -35,6 +35,9 @@ class BurgerBuilder extends Component {
 
   removeIngredientHandler = (type) => {
     const initialCount = this.state.ingredients[type]
+    if (initialCount <= 0 ) {
+      return
+    }
     const deductingIngredient = initialCount - 1
     const removedIngredient = {
       ...this.state.ingredients
@@ -45,7 +48,6 @@ class BurgerBuilder extends Component {
     const deductedPrice = oldPrice - INGREDIENT_PRICES[type]
 
     this.setState({ingredients: removedIngredient, totalPrice: deductedPrice})
-    debugger
   };
 
   render() {

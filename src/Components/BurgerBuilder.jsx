@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Burger from "./Burger";
 import BuildControls from "./BuildControls";
+import Ingredient from "./Ingredient";
 
 const INGREDIENT_PRICES = {
   meat: 10,
@@ -18,7 +19,19 @@ class BurgerBuilder extends Component {
       meat: 0,
     },
     totalPrice: 40,
+    purchasable: false,
   };
+
+  updatePurchasable = (ingredients) => {
+    const sum = Object.keys(ingredients)
+    .map(igKey => {
+      return ingredients[igKey]
+    })
+    .reduce((sum, el) => {
+      return sum + el
+    }, 0)
+    this.setState({ purchasable: sum > 0 })
+  }
 
   addingIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
@@ -31,6 +44,7 @@ class BurgerBuilder extends Component {
     const ingredientPrice = INGREDIENT_PRICES[type];
     const newPrice = initialPrice + ingredientPrice;
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+    this.updatePurchasable(updatedIngredients)
   };
 
   removeIngredientHandler = (type) => {
@@ -51,6 +65,7 @@ class BurgerBuilder extends Component {
       ingredients: removedIngredient,
       totalPrice: deductedPrice,
     });
+    this.updatePurchasable(removedIngredient)
   };
 
   render() {
@@ -70,6 +85,7 @@ class BurgerBuilder extends Component {
           removedIngredient={this.removeIngredientHandler}
           disabled={disabledButton}
           totalPrice={this.state.totalPrice}
+          purchasable={this.state.purchasable}
         />
       </>
     );

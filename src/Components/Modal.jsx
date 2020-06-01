@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import classes from "./Modal.module.css";
 
-const Modal = () => {
-  return (
-    <div>
-      {props.children}
-    </div>
-  );
-}
+const Modal = (props) => {
+  return <div className={classes.Modal}>{props.children}</div>;
+};
 
 export default Modal;

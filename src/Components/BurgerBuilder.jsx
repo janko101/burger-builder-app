@@ -21,7 +21,12 @@ class BurgerBuilder extends Component {
     },
     totalPrice: 40,
     purchasable: false,
+    ordering: false
   };
+
+  purchaseHandler = () => {
+    this.setState({ ordering: true })
+  }
 
   updatePurchasable = (ingredients) => {
     const sum = Object.keys(ingredients)
@@ -90,6 +95,7 @@ class BurgerBuilder extends Component {
           disabled={disabledButton}
           totalPrice={this.state.totalPrice}
           purchasable={this.state.purchasable}
+          ordered={this.purchaseHandler}
         />
       </>
     );

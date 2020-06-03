@@ -33,7 +33,7 @@ class BurgerBuilder extends Component {
   };
 
   confirmPurchaseHandler = () => {
-    alert('Processing...')
+    alert('Your order is processing...')
   }
 
   updatePurchasable = (ingredients) => {

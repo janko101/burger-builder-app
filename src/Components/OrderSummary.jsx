@@ -20,6 +20,8 @@ const OrderSummary = (props) => {
         <strong> {props.totalPrice.toFixed(2)} SEK</strong>
       </p>
       <p>Continue to Checkout?</p>
+      <button>CANCEL</button>
+      <button>CONFIRM</button>
     </>
   );
 };

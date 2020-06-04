@@ -3,8 +3,15 @@
   padding: 0;
   height: 100%;
   display: flex;
+  flex-flow: column;
   list-style: none;
   align-items: center;
+}
+
+@media (min-width: 500px) {
+  .NavigationItems {
+    flex-flow: row;
+  }
 }
 
 .NavigationItem {
@@ -41,7 +48,7 @@
     height: 100%;
     border-bottom: 4px solid transparent;
     color: antiquewhite;
-    padding: 16px 10px;
+    padding: 5px 10px;
   }
   
   .NavigationItem a:hover,

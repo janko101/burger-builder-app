@@ -5,17 +5,21 @@ import Sidedrawer from "./Sidedrawer";
 
 class Layout extends Component {
   state = {
-    showSidedrawer: true,
+    showSidedrawer: false,
   };
 
   closeSidedrawerHandler = () => {
     this.setState({ showSidedrawer: false });
   };
 
+  openSidedrawerHandler = () => {
+    this.setState({ showSidedrawer: true})
+  }
+
   render() {
     return (
       <>
-        <Toolbar />
+        <Toolbar clicked={this.openSidedrawerHandler}/>
         <Sidedrawer
           open={this.state.showSidedrawer}
           closed={this.closeSidedrawerHandler}

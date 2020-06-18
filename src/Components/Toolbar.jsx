@@ -3,10 +3,10 @@ import classes from "./Toolbar.module.css";
 import Logo from "./Logo";
 import NavigationItems from "./NavigationItems";
 
-const Toolbar = () => {
+const Toolbar = (props) => {
   return (
     <header className={classes.Toolbar}>
-      <div>Menu</div>
+      <div onClick={props.clicked}>Menu</div>
       <div className={classes.Logo}>
         <Logo />
       </div>

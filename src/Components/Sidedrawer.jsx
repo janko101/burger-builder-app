@@ -7,7 +7,7 @@ import Backdrop from "./Backdrop";
 const Sidedrawer = (props) => {
   return (
     <>
-      <Backdrop show/>
+      <Backdrop show={props.open} clicked={props.closed}/>
       <div className={classes.Sidedrawer}>
         <div className={classes.Logo}>
           <Logo />

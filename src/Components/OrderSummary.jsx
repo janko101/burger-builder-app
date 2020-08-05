@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Button from "./Button";
 
 class OrderSummary extends Component {
-  componentDidUpdate() {
-    console.log("OrderSummary updates")
-  }
   render() {
     const ingredientsSummary = Object.keys(this.props.ingredients).map((igKey) => {
       return (

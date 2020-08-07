@@ -3,6 +3,7 @@ import Burger from "./Burger";
 import BuildControls from "./BuildControls";
 import Modal from "./Modal";
 import OrderSummary from "./OrderSummary";
+import axios from "../axios-orders";
 
 const INGREDIENT_PRICES = {
   meat: 10,
@@ -33,8 +34,29 @@ class BurgerBuilder extends Component {
   };
 
   confirmPurchaseHandler = () => {
-    alert('Your order is processing...')
-  }
+    const order = {
+      ingredients: this.state.ingredients,
+      price: this.state.totalPrice,
+      customer: {
+        name: "Mad Farmer",
+        address: {
+          street: "SomeStreet 101",
+          zipCode: "101101",
+          country: "Sweden",
+        },
+        email: "email@email.com",
+      },
+      deliveryMethod: "Pick-up",
+    };
+    axios
+      .post("orders.json", order)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   updatePurchasable = (ingredients) => {
     const sum = Object.keys(ingredients)

@@ -36,7 +36,14 @@ class BurgerBuilder extends Component {
   };
 
   confirmPurchaseHandler = () => {
-    this.setState({loading: true})
+    this.setState({ loading: true });
+
+    const initialIngredients = {
+      salad: 0,
+      bacon: 0,
+      cheese: 0,
+      meat: 0,
+    };
 
     const order = {
       ingredients: this.state.ingredients,
@@ -55,10 +62,17 @@ class BurgerBuilder extends Component {
     axios
       .post("orders.json", order)
       .then((response) => {
-        this.setState({loading: false, ordering: false})
+        this.setState({
+          loading: false,
+          ordering: false,
+          ingredients: initialIngredients,
+        });
       })
       .catch((error) => {
-        this.setState({loading: false, ordering: false})
+        this.setState({
+          loading: false,
+          ordering: false,
+        });
       });
   };
 

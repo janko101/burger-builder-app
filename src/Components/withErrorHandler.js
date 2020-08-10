@@ -21,10 +21,14 @@ const withErrorHandler = (WrappedComponent, axios) => {
       );
     }
 
+    errorConfirmed = () => {
+      this.setState({ error: null });
+    };
+
     render() {
       return (
         <>
-          <Modal show={this.state.error}>
+          <Modal show={this.state.error} closeModal={this.errorConfirmed}>
             {this.state.error ? this.state.error.message : null}
           </Modal>
           <WrappedComponent {...this.props} />

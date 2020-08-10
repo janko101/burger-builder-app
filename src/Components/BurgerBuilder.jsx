@@ -61,7 +61,7 @@ class BurgerBuilder extends Component {
       deliveryMethod: "Pick-up",
     };
     axios
-      .post("orders.jsn", order)
+      .post("orders.json", order)
       .then((response) => {
         this.setState({
           loading: false,

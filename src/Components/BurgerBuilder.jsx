@@ -135,14 +135,7 @@ class BurgerBuilder extends Component {
       disabledButton[key] = disabledButton[key] <= 0;
     }
 
-    let orderSummary = (
-      <OrderSummary
-        ingredients={this.state.ingredients}
-        totalPrice={this.state.totalPrice}
-        cancelPurchase={this.cancelPurchaseHandler}
-        confirmPurchase={this.confirmPurchaseHandler}
-      />
-    );
+    let orderSummary;
 
     if (this.state.loading) {
       orderSummary = <Spinner />;
@@ -163,6 +156,14 @@ class BurgerBuilder extends Component {
             ordered={this.purchaseHandler}
           />
         </>
+      );
+      orderSummary = (
+        <OrderSummary
+          ingredients={this.state.ingredients}
+          totalPrice={this.state.totalPrice}
+          cancelPurchase={this.cancelPurchaseHandler}
+          confirmPurchase={this.confirmPurchaseHandler}
+        />
       );
     }
     return (

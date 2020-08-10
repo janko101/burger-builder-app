@@ -137,10 +137,6 @@ class BurgerBuilder extends Component {
 
     let orderSummary;
 
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
-    }
-
     let burger = <Spinner />;
 
     if (this.state.ingredients) {
@@ -165,6 +161,10 @@ class BurgerBuilder extends Component {
           confirmPurchase={this.confirmPurchaseHandler}
         />
       );
+    }
+
+    if (this.state.loading) {
+      orderSummary = <Spinner />;
     }
     return (
       <>

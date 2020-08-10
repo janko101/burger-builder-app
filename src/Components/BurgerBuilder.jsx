@@ -16,17 +16,19 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
+    ingredients: null,
     totalPrice: 40,
     purchasable: false,
     ordering: false,
     loading: false,
   };
+
+  componentDidMount() {
+    axios.get('ingredients.json')
+    .then(response => {
+      this.setState({ ingredients: response.data})
+    })
+  }
 
   purchaseHandler = () => {
     this.setState({ ordering: true });

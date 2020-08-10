@@ -21,7 +21,7 @@ class BurgerBuilder extends Component {
     purchasable: false,
     ordering: false,
     loading: false,
-    error: false
+    error: false,
   };
 
   componentDidMount() {
@@ -30,9 +30,9 @@ class BurgerBuilder extends Component {
       .then((response) => {
         this.setState({ ingredients: response.data });
       })
-      .catch(error => {
-        this.setState({ error: error})
-      })
+      .catch((error) => {
+        this.setState({ error: error });
+      });
   }
 
   purchaseHandler = () => {
@@ -141,7 +141,11 @@ class BurgerBuilder extends Component {
 
     let orderSummary;
 
-    let burger = this.state.error ? <p>Error loading ingredients!</p> : <Spinner />;
+    let burger = this.state.error ? (
+      <p>Error loading ingredients!</p>
+    ) : (
+      <Spinner />
+    );
 
     if (this.state.ingredients) {
       burger = (

@@ -11,6 +11,7 @@ class ContactData extends Component {
       postCode: ''
     }
   }
+  
   render() {
     return (
       <div className={classes.ContactData} >

@@ -11,16 +11,16 @@ class ContactData extends Component {
       postCode: ''
     }
   }
-  
+
   render() {
     return (
       <div className={classes.ContactData} >
         <h4>Enter your Contact Details:</h4>
         <form>
-          <input type="text" name="name" placeholder="Your Name"/>
-          <input type="email" name="email" placeholder="Your Email"/>
-          <input type="text" name="street" placeholder="Street"/>
-          <input type="text" name="postCode" placeholder="PostCode"/>
+          <input className={classes.Input} type="text" name="name" placeholder="Your Name"/>
+          <input className={classes.Input} type="email" name="email" placeholder="Your Email"/>
+          <input className={classes.Input} type="text" name="street" placeholder="Street"/>
+          <input className={classes.Input} type="text" name="postCode" placeholder="PostCode"/>
           <Button buttonType="Success">ORDER</Button>
         </form>
       </div>

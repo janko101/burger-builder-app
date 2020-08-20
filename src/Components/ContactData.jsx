@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import classes from "./ContactData.module.css";
-import axios from '../axios-orders'
+import axios from "../axios-orders";
+import Spinner from "./Spinner";
 
 class ContactData extends Component {
   state = {
@@ -11,7 +12,7 @@ class ContactData extends Component {
       street: "",
       postCode: "",
     },
-    loading: false
+    loading: false,
   };
 
   orderHandler = (event) => {
@@ -46,38 +47,45 @@ class ContactData extends Component {
   };
 
   render() {
+    let form = (
+      <form>
+        <input
+          className={classes.Input}
+          type="text"
+          name="name"
+          placeholder="Your Name"
+        />
+        <input
+          className={classes.Input}
+          type="email"
+          name="email"
+          placeholder="Your Email"
+        />
+        <input
+          className={classes.Input}
+          type="text"
+          name="street"
+          placeholder="Street"
+        />
+        <input
+          className={classes.Input}
+          type="text"
+          name="postCode"
+          placeholder="PostCode"
+        />
+        <Button buttonType="Success" clicked={this.orderHandler}>
+          ORDER
+        </Button>
+      </form>
+    );
+
+    if (this.state.loading) {
+      form = <Spinner />;
+    }
     return (
       <div className={classes.ContactData}>
         <h4>Enter your Contact Details:</h4>
-        <form>
-          <input
-            className={classes.Input}
-            type="text"
-            name="name"
-            placeholder="Your Name"
-          />
-          <input
-            className={classes.Input}
-            type="email"
-            name="email"
-            placeholder="Your Email"
-          />
-          <input
-            className={classes.Input}
-            type="text"
-            name="street"
-            placeholder="Street"
-          />
-          <input
-            className={classes.Input}
-            type="text"
-            name="postCode"
-            placeholder="PostCode"
-          />
-          <Button buttonType="Success" clicked={this.orderHandler}>
-            ORDER
-          </Button>
-        </form>
+        {form}
       </div>
     );
   }

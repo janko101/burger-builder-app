@@ -1,8 +1,9 @@
 import React from "react";
+import classes from "./Order.module.css"
 
 const Order = () => {
   return (
-    <div>
+    <div className={classes.Order}>
       <p>Ingedients: </p>
       <p>
         Price: <strong>80 SEK</strong>{" "}

@@ -1,12 +1,12 @@
 import React from "react";
 import classes from "./Order.module.css"
 
-const Order = () => {
+const Order = (props) => {
   return (
     <div className={classes.Order}>
       <p>Ingedients: </p>
       <p>
-        Price: <strong>80 SEK</strong>{" "}
+        Price: <strong>{props.price.toFixed(2)} SEK</strong>{" "}
       </p>
     </div>
   );

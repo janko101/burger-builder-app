@@ -9,7 +9,7 @@ const Input = (props) => {
   }
   let validationErrror;
   if (props.invalid && props.touched) {
-    validationErrror = <alert>Invalid Entry!</alert>
+    validationErrror = <alert>Invalid Entry!</alert>;
   }
   switch (props.elementType) {
     case "input":

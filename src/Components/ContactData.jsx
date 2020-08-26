@@ -16,10 +16,10 @@ class ContactData extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       email: {
         elementType: "input",
@@ -33,7 +33,7 @@ class ContactData extends Component {
           hasEmailFormat: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       street: {
         elementType: "input",
@@ -43,10 +43,10 @@ class ContactData extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       postCode: {
         elementType: "input",
@@ -57,10 +57,10 @@ class ContactData extends Component {
         value: "",
         validation: {
           required: true,
-          length: 5
+          length: 5,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       country: {
         elementType: "input",
@@ -70,10 +70,10 @@ class ContactData extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       deliveryMethod: {
         elementType: "select",
@@ -84,22 +84,26 @@ class ContactData extends Component {
           ],
         },
         value: "",
+        valid: true,
       },
     },
+    isFormValid: false,
     loading: false,
   };
 
   orderHandler = (event) => {
     event.preventDefault();
-    const formData = {}
+    const formData = {};
     for (let formKeyIdentifier in this.state.orderForm) {
-      formData[formKeyIdentifier] = this.state.orderForm[formKeyIdentifier].value
+      formData[formKeyIdentifier] = this.state.orderForm[
+        formKeyIdentifier
+      ].value;
     }
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
-      orderData: formData
+      orderData: formData,
     };
     axios
       .post("orders.json", order)
@@ -117,17 +121,17 @@ class ContactData extends Component {
   };
 
   checkValidity(value, rules) {
-    let isValid = false
+    let isValid = false;
     if (rules.required) {
-      isValid = value.trim() !== ""
+      isValid = value.trim() !== "";
     }
     if (rules.length) {
-      isValid = value.length === rules.length
+      isValid = value.length === rules.length;
     }
     if (rules.hasEmailFormat) {
-      isValid = value.includes('@' && '.') 
+      isValid = value.includes("@" && ".");
     }
-    return isValid
+    return isValid;
   }
 
   inputHandler = (event, inputIdentifier) => {
@@ -139,11 +143,19 @@ class ContactData extends Component {
       ...updatedOrderForm[inputIdentifier],
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
-    updatedFormElement.touched = true
-    console.log(updatedFormElement)
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-    this.setState({ orderForm: updatedOrderForm });
+
+    let isFormValid = true;
+    for (let inputIdentifier in updatedOrderForm) {
+      isFormValid = updatedOrderForm[inputIdentifier].valid && isFormValid;
+    }
+
+    this.setState({ orderForm: updatedOrderForm, isFormValid: isFormValid });
   };
   render() {
     const formElementsArray = [];
@@ -168,7 +180,7 @@ class ContactData extends Component {
             touched={formElement.config.touched}
           />
         ))}
-        <Button buttonType="Success">
+        <Button buttonType="Success" disabled={!this.state.isFormValid}>
           ORDER
         </Button>
       </form>

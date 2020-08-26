@@ -28,7 +28,8 @@ class ContactData extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          hasAtSign: true,
         },
         valid: false
       },
@@ -117,6 +118,9 @@ class ContactData extends Component {
     }
     if (rules.length) {
       isValid = value.length === rules.length
+    }
+    if (rules.hasAtSign) {
+      isValid = value.includes('@')
     }
     return isValid
   }

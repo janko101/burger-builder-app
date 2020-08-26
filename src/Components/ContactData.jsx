@@ -29,7 +29,7 @@ class ContactData extends Component {
         value: "",
         validation: {
           required: true,
-          hasAtSign: true,
+          hasEmailFormat: true,
         },
         valid: false
       },
@@ -119,8 +119,8 @@ class ContactData extends Component {
     if (rules.length) {
       isValid = value.length === rules.length
     }
-    if (rules.hasAtSign) {
-      isValid = value.includes('@')
+    if (rules.hasEmailFormat) {
+      isValid = value.includes('@' && '.') 
     }
     return isValid
   }
@@ -157,6 +157,8 @@ class ContactData extends Component {
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
             changed={(event) => this.inputHandler(event, formElement.id)}
+            invalid={!formElement.config.valid}
+            hasValidation={formElement.config.validation}
           />
         ))}
         <Button buttonType="Success">

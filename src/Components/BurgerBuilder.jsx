@@ -7,6 +7,7 @@ import OrderSummary from "./OrderSummary";
 import axios from "../axios-orders";
 import Spinner from "./Spinner";
 import withErrorHandler from "./withErrorHandler";
+import * as actionTypes from "../store/actions"
 
 const INGREDIENT_PRICES = {
   meat: 10,
@@ -167,7 +168,10 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    onIngredientAdded: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
+    onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName})
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux"
 import Burger from "./Burger";
 import BuildControls from "./BuildControls";
 import Modal from "./Modal";
@@ -16,7 +17,6 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
   state = {
-    ingredients: null,
     totalPrice: 40,
     purchasable: false,
     ordering: false,
@@ -160,4 +160,14 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));

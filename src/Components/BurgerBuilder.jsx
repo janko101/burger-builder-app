@@ -26,14 +26,14 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get("https://burger-builder-react-4b801.firebaseio.com/ingredients.json")
-      .then((response) => {
-        this.setState({ ingredients: response.data });
-      })
-      .catch((error) => {
-        this.setState({ error: error });
-      });
+    // axios
+    //   .get("https://burger-builder-react-4b801.firebaseio.com/ingredients.json")
+    //   .then((response) => {
+    //     this.setState({ ingredients: response.data });
+    //   })
+    //   .catch((error) => {
+    //     this.setState({ error: error });
+    //   });
   }
 
   purchaseHandler = () => {
@@ -105,7 +105,7 @@ class BurgerBuilder extends Component {
 
   render() {
     const disabledButton = {
-      ...this.state.ingredients,
+      ...this.props.ings,
     };
 
     for (let key in disabledButton) {
@@ -120,13 +120,13 @@ class BurgerBuilder extends Component {
       <Spinner />
     );
 
-    if (this.state.ingredients) {
+    if (this.props.ings) {
       burger = (
         <>
-          <Burger ingredients={this.state.ingredients} />
+          <Burger ingredients={this.props.ings} />
           <BuildControls
-            addedIngredient={this.addingIngredientHandler}
-            removedIngredient={this.removeIngredientHandler}
+            addedIngredient={this.props.onIngredientAdded}
+            removedIngredient={this.props.onIngredientRemoved}
             disabled={disabledButton}
             totalPrice={this.state.totalPrice}
             purchasable={this.state.purchasable}
@@ -136,7 +136,7 @@ class BurgerBuilder extends Component {
       );
       orderSummary = (
         <OrderSummary
-          ingredients={this.state.ingredients}
+          ingredients={this.props.ings}
           totalPrice={this.state.totalPrice}
           cancelPurchase={this.cancelPurchaseHandler}
           confirmPurchase={this.confirmPurchaseHandler}

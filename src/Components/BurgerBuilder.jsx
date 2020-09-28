@@ -9,13 +9,6 @@ import Spinner from "./Spinner";
 import withErrorHandler from "./withErrorHandler";
 import * as actionTypes from "../store/actions"
 
-const INGREDIENT_PRICES = {
-  meat: 10,
-  cheese: 7,
-  bacon: 8,
-  salad: 3,
-};
-
 class BurgerBuilder extends Component {
   state = {
     totalPrice: 40,

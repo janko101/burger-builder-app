@@ -85,7 +85,7 @@ class BurgerBuilder extends Component {
             removedIngredient={this.props.onIngredientRemoved}
             disabled={disabledButton}
             totalPrice={this.props.price}
-            purchasable={this.updatePurchasable}
+            purchasable={this.updatePurchasable(this.props.ings)}
             ordered={this.purchaseHandler}
           />
         </>

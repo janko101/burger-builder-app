@@ -36,9 +36,7 @@ class BurgerBuilder extends Component {
   };
 
   confirmPurchaseHandler = () => {
-    this.props.history.push({
-      pathname: "/checkout",
-    });
+    this.props.history.push("/checkout");
   };
 
   updatePurchasable = (ingredients) => {

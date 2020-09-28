@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import CheckoutSummary from "./CheckoutSummary";
 import { Route } from "react-router-dom";
 import ContactData from "./ContactData";
 
 class Checkout extends Component {
-
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ingredients = {};
@@ -45,10 +44,10 @@ class Checkout extends Component {
   }
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = (state) => {
   return {
-    ings: state.ingredients
-  }
-}
+    ings: state.ingredients,
+  };
+};
 
 export default connect(mapStateToProps)(Checkout);

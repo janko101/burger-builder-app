@@ -13,3 +13,10 @@ export const removeIngredient = (ingName) => {
     ingredientName: ingName
   }
 }
+
+export const setIngredients = (ingredients) => {
+  return {
+    type: actionTypes.FETCH_INGREDIENTS,
+    ingredients: ingredients
+  }
+}

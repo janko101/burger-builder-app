@@ -12,12 +12,7 @@ import * as actionCreators from "../store/actions/index";
 class BurgerBuilder extends Component {
   state = {
     ordering: false,
-    loading: false,
-    error: false,
   };
-
-  componentDidMount() {
-  }
 
   purchaseHandler = () => {
     this.setState({ ordering: true });
@@ -82,10 +77,7 @@ class BurgerBuilder extends Component {
         />
       );
     }
-
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
-    }
+    
     return (
       <>
         <Modal

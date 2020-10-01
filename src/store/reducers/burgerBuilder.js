@@ -34,7 +34,7 @@ const rootReducer = (state = initialState, action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
 
       };
-      case actionTypes.FETCH_INGREDIENTS:
+      case actionTypes.SET_INGREDIENTS:
         return {
           ...state,
           ingredients: action.ingredients,

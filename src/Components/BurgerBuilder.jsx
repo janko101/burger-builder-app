@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch) => {
     onIngredientRemoved: (ingName) =>
       dispatch(actionCreators.removeIngredient(ingName)),
     onFetchIngredients: () =>
-      dispatch(actionCreators.setIngredients())
+      dispatch(actionCreators.fetchIngredients())
   };
 };
 

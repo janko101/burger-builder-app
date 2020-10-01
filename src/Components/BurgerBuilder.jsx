@@ -10,7 +10,6 @@ import withErrorHandler from "./withErrorHandler";
 import * as actionTypes from "../store/actions/actionTypes";
 import * as actionCreators from "../store/actions/burgerBuilder";
 
-
 class BurgerBuilder extends Component {
   state = {
     ordering: false,
@@ -122,10 +121,7 @@ const mapDispatchToProps = (dispatch) => {
     onIngredientAdded: (ingName) =>
       dispatch(actionCreators.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
-      dispatch({
-        type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: ingName,
-      }),
+      dispatch(actionCreators.removeIngredient(ingName)),
   };
 };
 

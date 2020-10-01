@@ -14,6 +14,10 @@ class BurgerBuilder extends Component {
     ordering: false,
   };
 
+  componentDidMount() {
+    this.props.onFetchIngredients()
+  }
+
   purchaseHandler = () => {
     this.setState({ ordering: true });
   };
@@ -48,7 +52,7 @@ class BurgerBuilder extends Component {
 
     let orderSummary;
 
-    let burger = this.state.error ? (
+    let burger = this.props.error ? (
       <p>Error loading ingredients!</p>
     ) : (
       <Spinner />
@@ -77,7 +81,7 @@ class BurgerBuilder extends Component {
         />
       );
     }
-    
+
     return (
       <>
         <Modal
@@ -96,6 +100,7 @@ const mapStateToProps = (state) => {
   return {
     ings: state.ingredients,
     price: state.totalPrice,
+    error: state.error
   };
 };
 
@@ -105,6 +110,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.addIngredient(ingName)),
     onIngredientRemoved: (ingName) =>
       dispatch(actionCreators.removeIngredient(ingName)),
+    onFetchIngredients: () =>
+      dispatch(actionCreators.setIngredients())
   };
 };
 

@@ -7,6 +7,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.START_PURCHASING_BURGER:
+      return {
+        ...state,
+        loading: true
+      }
     case actionTypes.BURGER_ORDER_SUCCESS:
       const newOrder = {
         ...action.orderData,

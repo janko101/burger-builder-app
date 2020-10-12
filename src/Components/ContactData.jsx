@@ -4,6 +4,9 @@ import Button from "./Button";
 import classes from "./ContactData.module.css";
 import Spinner from "./Spinner";
 import Input from "./Input";
+import withErrorHandler from "./withErrorHandler";
+import axios from "../axios-orders";
+import * as actionCreators from "../store/actions/index";
 
 class ContactData extends Component {
   state = {
@@ -99,12 +102,12 @@ class ContactData extends Component {
         formKeyIdentifier
       ].value;
     }
-    this.setState({ loading: true });
     const order = {
       ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
     };
+    this.props.onOrderBurger(order)
   };
 
   checkValidity(value, rules) {
@@ -195,4 +198,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ContactData);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onOrderBurger: (orderData) =>
+      dispatch(actionCreators.startOrder(orderData)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(ContactData, axios));

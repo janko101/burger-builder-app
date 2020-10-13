@@ -43,6 +43,7 @@ const rootReducer = (state = initialState, action) => {
             bacon: action.ingredients.bacon,
             meat: action.ingredients.meat,
           },
+          totalPrice: 40,
           error: false
         };
       case actionTypes.FETCH_INGREDIENTS_FAILED:

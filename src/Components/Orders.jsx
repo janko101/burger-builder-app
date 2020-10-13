@@ -1,20 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Order from "./Order";
 import axios from "../axios-orders";
 import withErrorHandler from "./withErrorHandler";
+import * as actionCreators from "../store/actions/index";
 
 class Orders extends Component {
-  state = {
-    orders: [],
-    loading: true,
-  };
-
   componentDidMount() {
+    this.props.onFetchOrders();
   }
+
   render() {
     return (
       <div>
-        {this.state.orders.map((order) => (
+        {this.props.orders.map((order) => (
           <Order
             key={order.id}
             ingredients={order.ingredients}
@@ -26,4 +25,19 @@ class Orders extends Component {
   }
 }
 
-export default withErrorHandler(Orders, axios);
+const mapStateToProps = (state) => {
+  return {
+    orders: state.order.orders,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchOrders: () => dispatch(actionCreators.fetchOrders()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(Orders, axios));

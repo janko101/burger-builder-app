@@ -74,10 +74,10 @@ export const fetchOrders = () => {
             id: key,
           });
         }
-        dispatch(fetchOrdersSuccess({ orders: fetchedOrders }));
+        dispatch(fetchOrdersSuccess(fetchedOrders));
       })
       .catch((err) => {
-        dispatch(fetchOrdersFailed({ error: err }));
+        dispatch(fetchOrdersFailed(err));
       });
   };
 };

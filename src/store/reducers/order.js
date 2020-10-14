@@ -12,10 +12,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.START_PURCHASING_BURGER:
       return UpdateObject(state, { loading: true });
     case actionTypes.BURGER_ORDER_SUCCESS:
-      const newOrder = {
-        ...action.orderData,
-        id: action.id,
-      };
+      const newOrder = UpdateObject(action.orderData, { id: action.id });
       return UpdateObject(state, {
         loading: false,
         orders: state.orders.concat(newOrder),

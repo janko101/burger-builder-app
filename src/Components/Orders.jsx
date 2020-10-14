@@ -12,7 +12,7 @@ class Orders extends Component {
   }
 
   render() {
-    let orders;
+    let orders = <Spinner />;
     if (!this.props.loading) {
       orders = this.props.orders.map((order) => (
         <Order
@@ -21,8 +21,6 @@ class Orders extends Component {
           price={+order.price}
         />
       ));
-    } else {
-      orders = <Spinner />;
     }
     return <div>{orders}</div>;
   }

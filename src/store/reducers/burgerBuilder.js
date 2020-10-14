@@ -28,23 +28,19 @@ const rootReducer = (state = initialState, action) => {
         ingredients: updatedIngredients,
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
       };
-      return UpdateObject(state, updatedState)
+      return UpdateObject(state, updatedState);
     case actionTypes.REMOVE_INGREDIENT:
       const updateIng = {
         [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
       };
-      const updatedIngs = UpdateObject(
-        state.ingredients,
-        updateIng
-      );
+      const updatedIngs = UpdateObject(state.ingredients, updateIng);
       const updatedSt = {
         ingredients: updatedIngs,
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
-      return UpdateObject(state, updatedSt)
+      return UpdateObject(state, updatedSt);
     case actionTypes.SET_INGREDIENTS:
-      return {
-        ...state,
+      return UpdateObject(state, {
         ingredients: {
           salad: action.ingredients.salad,
           cheese: action.ingredients.cheese,
@@ -53,12 +49,9 @@ const rootReducer = (state = initialState, action) => {
         },
         totalPrice: 40,
         error: false,
-      };
+      });
     case actionTypes.FETCH_INGREDIENTS_FAILED:
-      return {
-        ...state,
-        error: true,
-      };
+      return UpdateObject(state, { error: true });
     default:
       return state;
   }

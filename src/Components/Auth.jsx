@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import Input from "./Input";
-import classes from "./Auth.module.css"
+import classes from "./Auth.module.css";
 
 class Auth extends Component {
   state = {
@@ -45,8 +45,8 @@ class Auth extends Component {
     if (rules.required) {
       isValid = value.trim() !== "";
     }
-    if (rules.length) {
-      isValid = value.length === rules.length;
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength;
     }
     if (rules.hasEmailFormat) {
       isValid = value.includes("@" && ".");
@@ -54,7 +54,22 @@ class Auth extends Component {
     return isValid;
   }
 
-   
+  inputHandler = (event, controlName) => {
+    const updatedControls = {
+      ...this.state.controls,
+      [controlName]: {
+        ...this.state.controls[controlName],
+        value: event.target.value,
+        valid: this.checkValidity(
+          event.target.value,
+          this.state.controls[controlName].validation
+        ),
+        touched: true,
+      },
+    };
+    this.setState({ controls: updatedControls });
+  };
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {

@@ -36,6 +36,25 @@ class Auth extends Component {
       },
     },
   };
+
+  checkValidity(value, rules) {
+    let isValid = false;
+    if (!rules) {
+      return true;
+    }
+    if (rules.required) {
+      isValid = value.trim() !== "";
+    }
+    if (rules.length) {
+      isValid = value.length === rules.length;
+    }
+    if (rules.hasEmailFormat) {
+      isValid = value.includes("@" && ".");
+    }
+    return isValid;
+  }
+
+   
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import classes from "./Auth.module.css"
 
 class Auth extends Component {
   state = {
@@ -56,7 +57,7 @@ class Auth extends Component {
       />
     ));
     return (
-      <div>
+      <div className={classes.Auth}>
         <form>
           {form}
           <Button buttonType="Success">Submit</Button>

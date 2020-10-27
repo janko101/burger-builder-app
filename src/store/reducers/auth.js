@@ -17,11 +17,12 @@ const authSuccess = (state, action) => {
     token: action.tokenId,
     userId: action.userId,
     error: null,
+    loading: false
   });
 };
 
 const authFailed = (state, action) => {
-  return UpdateObject(state, { error: action.error });
+  return UpdateObject(state, { error: action.error, loading: false });
 };
 
 const authReducer = (state = initialState, action) => {

@@ -4,7 +4,7 @@ import Button from "./Button";
 import Input from "./Input";
 import classes from "./Auth.module.css";
 import * as actions from "../store/actions/index";
-import Spinner from "./Spinner"
+import Spinner from "./Spinner";
 
 class Auth extends Component {
   state = {
@@ -111,11 +111,11 @@ class Auth extends Component {
     ));
 
     if (this.props.loading) {
-      form = <Spinner />
+      form = <Spinner />;
     }
-    let errorMessage 
+    let errorMessage;
     if (this.props.error) {
-      errorMessage = <p>{this.props.error}</p>
+      errorMessage = <p>{this.props.error.message}</p>;
     }
 
     return (
@@ -136,13 +136,14 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
-  }
-}
+    error: state.auth.error,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+    onAuth: (email, password, isSignup) =>
+      dispatch(actions.auth(email, password, isSignup)),
   };
 };
 

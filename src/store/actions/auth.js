@@ -43,7 +43,7 @@ export const auth = (email, password, isSignup) => {
         dispatch(authSuccess(response.data.idToken, response.data.localId));
       })
       .catch((error) => {
-        dispatch(authFailed(error.response.data.error.message));
+        dispatch(authFailed(error.response.data.error));
       });
   };
 };

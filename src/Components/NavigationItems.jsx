@@ -12,7 +12,7 @@ const NavigationItems = () => (
         Orders
       </NavLink>
       <NavLink to="/auth" activeClassName={classes.active}>
-        Login
+        Sign In
       </NavLink>
     </li>
   </ul>

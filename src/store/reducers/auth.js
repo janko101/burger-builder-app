@@ -17,12 +17,16 @@ const authSuccess = (state, action) => {
     token: action.tokenId,
     userId: action.userId,
     error: null,
-    loading: false
+    loading: false,
   });
 };
 
 const authFailed = (state, action) => {
   return UpdateObject(state, { error: action.error, loading: false });
+};
+
+const authLogout = (state, action) => {
+  return UpdateObject(state, { token: null, userId: null });
 };
 
 const authReducer = (state = initialState, action) => {
@@ -33,9 +37,11 @@ const authReducer = (state = initialState, action) => {
       return authSuccess(state, action);
     case actionTypes.AUTH_FAILED:
       return authFailed(state, action);
+    case actionTypes.AUTH_LOGOUT:
+      return authLogout(state, action);
     default:
       return state;
   }
 };
 
-export default authReducer
+export default authReducer;

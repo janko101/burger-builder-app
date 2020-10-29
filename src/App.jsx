@@ -5,6 +5,7 @@ import BurgerBuilder from "./Components/BurgerBuilder";
 import Checkout from "./Components/Checkout";
 import Orders from "./Components/Orders";
 import Auth from "./Components/Auth"
+import Logout from "./Components/Logout"
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path="/checkout" component={Checkout}/> 
           <Route path="/orders" component={Orders}/> 
           <Route path="/auth" component={Auth}/> 
+          <Route path="/Logout" component={Logout}/> 
         </Layout>
       </div>
     );

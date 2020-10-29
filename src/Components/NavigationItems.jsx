@@ -8,9 +8,11 @@ const NavigationItems = (props) => (
       <NavLink to="/" exact activeClassName={classes.active}>
         Burger Builder
       </NavLink>
-      <NavLink to="/orders" activeClassName={classes.active}>
-        Orders
-      </NavLink>
+      {props.isAuth ? (
+        <NavLink to="/orders" activeClassName={classes.active}>
+          Orders
+        </NavLink>
+      ) : null}
       {props.isAuth ? (
         <NavLink to="/logout" activeClassName={classes.active}>
           Sign Out

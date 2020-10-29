@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./NavigationItems.module.css";
 
-const NavigationItems = () => (
+const NavigationItems = (props) => (
   <ul className={classes.NavigationItems}>
     <li className={classes.NavigationItem}>
       <NavLink to="/" exact activeClassName={classes.active}>
@@ -11,9 +11,15 @@ const NavigationItems = () => (
       <NavLink to="/orders" activeClassName={classes.active}>
         Orders
       </NavLink>
-      <NavLink to="/auth" activeClassName={classes.active}>
-        Sign In
-      </NavLink>
+      {props.isAuth ? (
+        <NavLink to="/logout" activeClassName={classes.active}>
+          Sign Out
+        </NavLink>
+      ) : (
+        <NavLink to="/auth" activeClassName={classes.active}>
+          Sign In
+        </NavLink>
+      )}
     </li>
   </ul>
 );

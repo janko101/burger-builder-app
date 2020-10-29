@@ -19,7 +19,11 @@ class BurgerBuilder extends Component {
   }
 
   purchaseHandler = () => {
-    this.setState({ ordering: true });
+    if (this.props.isAuth) {
+      this.setState({ ordering: true });
+    } else {
+      this.props.history.push("/auth");
+    }
   };
 
   cancelPurchaseHandler = () => {
@@ -103,7 +107,7 @@ const mapStateToProps = (state) => {
     ings: state.burgerReducer.ingredients,
     price: state.burgerReducer.totalPrice,
     error: state.burgerReducer.error,
-    isAuth: state.auth.token !== null
+    isAuth: state.auth.token !== null,
   };
 };
 

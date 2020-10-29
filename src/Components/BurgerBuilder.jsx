@@ -70,6 +70,7 @@ class BurgerBuilder extends Component {
             totalPrice={this.props.price}
             purchasable={this.updatePurchasable(this.props.ings)}
             ordered={this.purchaseHandler}
+            isAuth={this.props.isAuth}
           />
         </>
       );
@@ -102,6 +103,7 @@ const mapStateToProps = (state) => {
     ings: state.burgerReducer.ingredients,
     price: state.burgerReducer.totalPrice,
     error: state.burgerReducer.error,
+    isAuth: state.auth.token !== null
   };
 };
 

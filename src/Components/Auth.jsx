@@ -119,14 +119,14 @@ class Auth extends Component {
       errorMessage = <p>{this.props.error.message}</p>;
     }
 
-    let redirect
+    let authRedirect
     if (this.props.isAuthenticated) {
-      redirect = <Redirect to="/"/>
+      authRedirect = <Redirect to="/"/>
     }
 
     return (
       <div className={classes.Auth}>
-        {redirect}
+        {authRedirect}
         {errorMessage}
         <form onSubmit={this.onSubmitHandler}>
           {form}

@@ -1,5 +1,4 @@
 import * as actionTypes from "../actions/actionTypes";
-import { setAuthRedirectPath } from "../actions/auth";
 import { UpdateObject } from "../utility";
 
 const initialState = {

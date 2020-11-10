@@ -89,7 +89,7 @@ export const authCheckState = () => {
     } else if (expirationTime > new Date()) {
       dispatch(authSuccess(token, userId));
       dispatch(
-        checkAuthTimeout(expirationTime.getSeconds() - new Date().getSeconds())
+        checkAuthTimeout((expirationTime.getTime() - new Date().getTime()) / 1000)
       );
     } else {
       dispatch(logout());

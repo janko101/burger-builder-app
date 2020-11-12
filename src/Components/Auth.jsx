@@ -6,7 +6,7 @@ import Input from "./Input";
 import classes from "./Auth.module.css";
 import * as actions from "../store/actions/index";
 import Spinner from "./Spinner";
-import { UpdateObject } from "../shared/utility";
+import { UpdateObject, checkValidity } from "../shared/utility";
 
 class Auth extends Component {
   state = {
@@ -49,28 +49,11 @@ class Auth extends Component {
     }
   }
 
-  checkValidity(value, rules) {
-    let isValid = false;
-    if (!rules) {
-      return true;
-    }
-    if (rules.required) {
-      isValid = value.trim() !== "";
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength;
-    }
-    if (rules.hasEmailFormat) {
-      isValid = value.includes("@" && ".");
-    }
-    return isValid;
-  }
-
   inputHandler = (event, controlName) => {
     const updatedControls = UpdateObject(this.state.controls, {
       [controlName]: UpdateObject(this.state.controls[controlName], {
         value: event.target.value,
-        valid: this.checkValidity(
+        valid: checkValidity(
           event.target.value,
           this.state.controls[controlName].validation
         ),

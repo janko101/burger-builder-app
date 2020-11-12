@@ -7,7 +7,7 @@ import Input from "./Input";
 import withErrorHandler from "./withErrorHandler";
 import axios from "../axios-orders";
 import * as actionCreators from "../store/actions/index";
-import { UpdateObject } from "../shared/utility";
+import { UpdateObject, checkValidity } from "../shared/utility";
 
 class ContactData extends Component {
   state = {
@@ -111,29 +111,12 @@ class ContactData extends Component {
     this.props.onOrderBurger(order, this.props.token);
   };
 
-  checkValidity(value, rules) {
-    let isValid = false;
-    if (!rules) {
-      return true;
-    }
-    if (rules.required) {
-      isValid = value.trim() !== "";
-    }
-    if (rules.length) {
-      isValid = value.length === rules.length;
-    }
-    if (rules.hasEmailFormat) {
-      isValid = value.includes("@" && ".");
-    }
-    return isValid;
-  }
-
   inputHandler = (event, inputIdentifier) => {
     const updatedFormElement = UpdateObject(
       this.state.orderForm[inputIdentifier],
       {
         value: event.target.value,
-        valid: this.checkValidity(
+        valid: checkValidity(
           event.target.value,
           this.state.orderForm[inputIdentifier].validation
         ),

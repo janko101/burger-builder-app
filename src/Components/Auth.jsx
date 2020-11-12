@@ -6,6 +6,7 @@ import Input from "./Input";
 import classes from "./Auth.module.css";
 import * as actions from "../store/actions/index";
 import Spinner from "./Spinner";
+import { UpdateObject } from "../shared/utility";
 
 class Auth extends Component {
   state = {
@@ -66,18 +67,16 @@ class Auth extends Component {
   }
 
   inputHandler = (event, controlName) => {
-    const updatedControls = {
-      ...this.state.controls,
-      [controlName]: {
-        ...this.state.controls[controlName],
+    const updatedControls = UpdateObject(this.state.controls, {
+      [controlName]: UpdateObject(this.state.controls[controlName], {
         value: event.target.value,
         valid: this.checkValidity(
           event.target.value,
           this.state.controls[controlName].validation
         ),
         touched: true,
-      },
-    };
+      }),
+    });
     this.setState({ controls: updatedControls });
   };
 
@@ -160,8 +159,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, isSignup) =>
       dispatch(actions.auth(email, password, isSignup)),
-    onSetAuthRedirectPath: () =>
-      dispatch(actions.setAuthRedirectPath("/")),
+    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/")),
   };
 };
 

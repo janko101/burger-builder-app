@@ -9,7 +9,7 @@ import Spinner from "./Spinner";
 import withErrorHandler from "./withErrorHandler";
 import * as actionCreators from "../store/actions/index";
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
   state = {
     ordering: false,
   };
